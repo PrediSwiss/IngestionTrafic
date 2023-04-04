@@ -43,7 +43,6 @@ def get_data(url, headers):
 def create_bucket(name, client: storage.Client):    
     bucket = client.create_bucket(name, location="eu")
     print(f"Bucket {name} created")
-
     return bucket
 
 def create_blob(root_bucket: storage.Bucket, destination_name, data_type, data):
