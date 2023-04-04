@@ -15,7 +15,6 @@ headers = {
 
 def main():
     storage_client = storage.Client(project="prediswiss")
-
     buckets = storage_client.list_buckets()
 
     if len(list(buckets)) == 0:
