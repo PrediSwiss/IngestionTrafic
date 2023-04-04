@@ -13,7 +13,7 @@ headers = {
     'SOAPAction': 'http://opentransportdata.swiss/TDP/Soap_Datex2/Pull/v1/pullMeasuredData' 
 }
 
-def main():
+def ingestion_data():
     storage_client = storage.Client(project="prediswiss")
     buckets = storage_client.list_buckets()
 
@@ -52,9 +52,6 @@ def create_blob(root_bucket: storage.Bucket, destination_name, data_type, data):
     generation_match_precondition = 0
     blob.upload_from_string(data, data_type, if_generation_match=generation_match_precondition)
     print("file created")
-    
-if __name__ == "__main__":
-    main()
 
 class UrlException(Exception):
     "Raised when url is not correct"
