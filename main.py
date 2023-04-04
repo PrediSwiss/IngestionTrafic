@@ -43,7 +43,7 @@ def get_data(url, headers):
     return ET.tostring(element, encoding='unicode')
 
 def create_bucket(name, client: storage.Client):    
-    bucket = client.create_bucket(name, location="eu")
+    bucket = client.create_bucket(name, location="us-east1")
     print(f"Bucket {name} created")
     return bucket
 
