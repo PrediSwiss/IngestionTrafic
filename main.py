@@ -15,7 +15,7 @@ headers = {
 }
 
 @functions_framework.cloud_event
-def ingestion_data():
+def ingestion_data(cloud_event):
     storage_client = storage.Client(project="prediswiss")
     buckets = storage_client.list_buckets()
 
