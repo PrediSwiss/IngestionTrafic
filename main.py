@@ -19,11 +19,10 @@ def ingestion_data(cloud_event):
     storage_client = storage.Client(project="prediswiss")
     buckets = storage_client.list_buckets()
 
-    if len(list(buckets)) == 0:
-        print("There is 0 buckets")
-        bucket = create_bucket(bucket_name, storage_client)
-    else:
+    try:
         bucket = storage_client.get_bucket(bucket_name)
+    except:
+        bucket = create_bucket(bucket_name, storage_client)
 
     now = datetime.now()
     create_blob(bucket, now.strftime("%d-%m-%Y/%H-%M"), "text/json", get_data(url=url, headers=headers))
