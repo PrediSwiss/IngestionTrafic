@@ -3,6 +3,7 @@ import requests
 import xml.etree.ElementTree as ET
 from datetime import datetime
 import pytest
+import functions_framework
 
 bucket_name = "prediswiss-raw-data"
 url = "https://api.opentransportdata.swiss/TDP/Soap_Datex2/Pull"
@@ -13,6 +14,7 @@ headers = {
     'SOAPAction': 'http://opentransportdata.swiss/TDP/Soap_Datex2/Pull/v1/pullMeasuredData' 
 }
 
+@functions_framework.cloud_event
 def ingestion_data():
     storage_client = storage.Client(project="prediswiss")
     buckets = storage_client.list_buckets()
