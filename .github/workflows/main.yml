@@ -3,7 +3,7 @@ name: Python package
 on: 
   push:
     branches:
-      - "dev"
+      - "main"
 
 jobs:
   build:
@@ -28,3 +28,11 @@ jobs:
       - name: Test with pytest
         run: |
           pytest main.py
+
+      - name: Set up gcloud Cloud SDK environment
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GOOGLE_CREDENTIALS}}'
+
+      - name: Deploy the function
+        run: gcloud functions deploy ingestion_data --trigger-topic=IngestionData --runtime=python311
