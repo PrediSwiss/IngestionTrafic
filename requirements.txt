@@ -1,2 +1,3 @@
 google-cloud-storage
 pytest
+functions_framework
