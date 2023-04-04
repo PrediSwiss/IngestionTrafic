@@ -91,5 +91,4 @@ class TestIngestion:
 
     def test_get_data_headers_error(self):
         with pytest.raises(HeadersException):
-            get_data(self.url1, self.headers2)
-            
+            get_data(self.url1, self.headers2)          
