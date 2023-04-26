@@ -12,6 +12,9 @@ jobs:
       contents: 'read'
       id-token: 'write'
 
+    env:
+      OPENTRANSPORT_CREDENTIAL: ${{secrets.OPENTRANSPORT_CREDENTIAL}}
+
     strategy:
       matrix:
         python-version: ["3.11"]

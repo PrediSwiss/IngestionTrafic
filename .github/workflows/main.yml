@@ -43,6 +43,7 @@ jobs:
         with:
           name: 'ingestion_data'
           runtime: 'python311'
+          env_vars: OPENTRANSPORT_CREDENTIAL=${{secrets.OPENTRANSPORT_CREDENTIAL}}
           event_trigger_type: "google.pubsub.topic.publish"
           event_trigger_resource: "projects/${{secrets.PROJECT_ID}}/topics/${{secrets.TOPIC_ID}}"
           event_trigger_service: "pubsub.googleapis.com"

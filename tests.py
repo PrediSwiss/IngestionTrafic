@@ -1,4 +1,5 @@
 import pytest
+import os
 
 from google.cloud import storage
 from main import get_data, UrlException, HeadersException, create_blob, create_bucket
@@ -10,13 +11,13 @@ class TestIngestion:
 
     headers1 = {
         'Content-Type': 'text/xml; charset=utf-8',
-        'Authorization': '57c5dbbbf1fe4d0001000018dcaa101c238948f0892513258029a974',
+        'Authorization': os.environ.get("OPENTRANSPORT_CREDENTIAL"),
         'SOAPAction': 'http://opentransportdata.swiss/TDP/Soap_Datex2/Pull/v1/pullMeasuredData' 
     }
 
     headers2 = {
         'Content-Type': 'text/xml; charset=utf-8',
-        'Authorization': 'asda57c5dbbbf1fe4d0001000018dcaa101c238948f0892513258029a974',
+        'Authorization': os.environ.get("OPENTRANSPORT_CREDENTIAL") + 'fdsads',
         'SOAPAction': 'http://opentransportdata.swiss/TDP/Soap_Datex2/Pull/v1/pullMeasuredData' 
     }
 
