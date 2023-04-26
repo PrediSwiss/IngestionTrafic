@@ -33,7 +33,6 @@ def get_data(url, headers):
     if response.status_code == 404:
         raise UrlException
     if response.status_code == 403:
-        print(response.text)
         raise HeadersException
     if response.status_code != 200:
         raise NotSupportedException
