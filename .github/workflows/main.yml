@@ -37,6 +37,9 @@ jobs:
         uses: 'google-github-actions/auth@v1'
         with:
           credentials_json: '${{ secrets.GOOGLE_CREDENTIALS}}'
+          
+      - name: Create scheduler
+        run: gcloud scheduler jobs create pubsub PrediSwissScheduleMinute --location="us-east1" --schedule="* * * * *" --topic="projects/${{secrets.PROJECT_ID}}/topics/${{secrets.TOPIC_ID}}"
 
       - name: Deploy the function
         uses: 'google-github-actions/deploy-cloud-functions@v1'
