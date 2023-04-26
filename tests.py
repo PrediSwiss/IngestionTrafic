@@ -11,13 +11,13 @@ class TestIngestion:
 
     headers1 = {
         'Content-Type': 'text/xml; charset=utf-8',
-        'Authorization': os.environ.get("OPENTRANSPORT_CREDENTIAL"),
+        'Authorization': os.environ.get("OPENTRANSPORT_CREDENTIAL") + '.',
         'SOAPAction': 'http://opentransportdata.swiss/TDP/Soap_Datex2/Pull/v1/pullMeasuredData' 
     }
 
     headers2 = {
         'Content-Type': 'text/xml; charset=utf-8',
-        'Authorization': os.environ.get("OPENTRANSPORT_CREDENTIAL") + 'fdsads',
+        'Authorization': os.environ.get("OPENTRANSPORT_CREDENTIAL") + '.' + 'fdsads',
         'SOAPAction': 'http://opentransportdata.swiss/TDP/Soap_Datex2/Pull/v1/pullMeasuredData' 
     }
 

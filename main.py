@@ -10,7 +10,7 @@ url = "https://api.opentransportdata.swiss/TDP/Soap_Datex2/Pull"
 
 headers = {
     'Content-Type': 'text/xml; charset=utf-8',
-    'Authorization': os.environ.get("OPENTRANSPORT_CREDENTIAL"),
+    'Authorization': os.environ.get("OPENTRANSPORT_CREDENTIAL") + '.',
     'SOAPAction': 'http://opentransportdata.swiss/TDP/Soap_Datex2/Pull/v1/pullMeasuredData' 
 }
 
