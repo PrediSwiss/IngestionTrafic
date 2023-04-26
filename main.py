@@ -10,7 +10,7 @@ url = "https://api.opentransportdata.swiss/TDP/Soap_Datex2/Pull"
 
 headers = {
     'Content-Type': 'text/xml; charset=utf-8',
-    'Authorization': os.environ.get("OPENTRANSPORT_CREDENTIAL") + '.',
+    'Authorization': os.environ.get("OPENTRANSPORT_CREDENTIAL"),
     'SOAPAction': 'http://opentransportdata.swiss/TDP/Soap_Datex2/Pull/v1/pullMeasuredData' 
 }
 
@@ -33,6 +33,7 @@ def get_data(url, headers):
     if response.status_code == 404:
         raise UrlException
     if response.status_code == 403:
+        print(response.text)
         raise HeadersException
     if response.status_code != 200:
         raise NotSupportedException
