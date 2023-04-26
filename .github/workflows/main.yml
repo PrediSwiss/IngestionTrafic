@@ -29,21 +29,23 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
+      - name: Test with pytest
+        run: |
+          pytest main.py
+
       - name: Set up gcloud Cloud SDK environment
         uses: 'google-github-actions/auth@v1'
         with:
           credentials_json: '${{ secrets.GOOGLE_CREDENTIALS}}'
-
-      - name: Test with pytest
-        run: |
-          pytest tests.py
+          
+      - name: Create scheduler
+        run: gcloud scheduler jobs create pubsub PrediSwissScheduleMinute --location="us-east1" --schedule="* * * * *" --topic="projects/${{secrets.PROJECT_ID}}/topics/${{secrets.TOPIC_ID}}"
 
       - name: Deploy the function
         uses: 'google-github-actions/deploy-cloud-functions@v1'
         with:
           name: 'ingestion_data'
           runtime: 'python311'
-          env_vars: OPENTRANSPORT_CREDENTIAL=${{secrets.OPENTRANSPORT_CREDENTIAL}}
           event_trigger_type: "google.pubsub.topic.publish"
           event_trigger_resource: "projects/${{secrets.PROJECT_ID}}/topics/${{secrets.TOPIC_ID}}"
           event_trigger_service: "pubsub.googleapis.com"
